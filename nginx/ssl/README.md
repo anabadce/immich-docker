@@ -1,5 +1,9 @@
 # SSL certs
 
+Nginx needs these 2 files before it can start:
+- `self-signed.key`
+- `self-signed.crt`
+
 Example command to create a self-signed SSL certificate/key pair.
 ```
 HOSTNAME=photos.example.com
@@ -19,4 +23,4 @@ openssl x509 -in self-signed.crt -noout -text | grep -E "(Subject:|Not)"
 openssl rsa -in self-signed.key -noout --modulus
 openssl x509 -in self-signed.crt -noout --modulus
 ```
-Note: You certificate and private key must always have the same modulus.
+Note: Your certificate and private key must always have the same modulus.

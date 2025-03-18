@@ -13,13 +13,14 @@ Example:
 - Cloudfront forwards traffic to your home server -> https://home.example.com
 
 ## Usage
+ 
 ### 1. Create and configure `.env` file from template
 - Must change `TZ` and `DB_PASSWORD`
 
 ### 2. Create and Configure `nginx/.conf.d/immich.conf` file from template
 - Must change:
   - L4: `# SECRET KEY #` that must be he same configured later in Cloudfront
-  - L9-11: to allow the desired countriesl
+  - L9-11: to restric traffic to desired countries only
   - L16, L32: to allow your local IP range
   - L67: replace `photos.example.com` with the public DNS domain you own and want to use
 
@@ -53,13 +54,15 @@ docker compose up -d --build nginx
 ```
 - You can now test browsing https://home.example.com
   - Note: you should see `Nope.`
+    - This is because this is only meant to work for traffic coming from Cloudfront.
 
 ### 7. Configure Cloudfront in your AWS account
 - You want to configure `https://photos.example.com`
 - So it forwards to `https://home.example.com`
+- Follow instructions in [cloudfront](./cloudfront)
 
+## Notes
 
-## Description
 - http port 80 and https on port 443 are handled by Nginx
   - By default Nginx uses a self signed certificate
   - You must can issue a valid cert to use Cloudfront

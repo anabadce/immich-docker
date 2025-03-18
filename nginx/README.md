@@ -26,11 +26,17 @@ sudo cp host-cron.d-immich-nginx-certbot /etc/cron.d
 
 ## Certbot initial set up:
 
-Nginx uses a self-signed cert, once issue a valid cert update `immich.conf` cert paths.
+Initially Nginx uses a self-signed cert, great for local tests but not good for public Internet traffic.
 
-Example if initial issue:
+You should issue a valid SSL certificate that validates the public domain that points to your home.
+- Like `home.example.com`, this will only be visible and used by servers to protect traffic from AWS Cloudfront to your origin (home).
+- Not `photos.example.com` if that is the subdomain you want users to use, that will be issued and managed by AWS Cloudfront.
+
+Once issued a valid cert update `immich.conf` cert paths.
+
+Example of initial issue:
 ```
-DOMAIN=photos.example.com
+DOMAIN=home.example.com
 EMAIL=myname@example.com
 WEBROOT=/usr/share/nginx/html
 
