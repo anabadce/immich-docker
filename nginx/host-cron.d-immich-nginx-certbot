@@ -1,0 +1,1 @@
+@weekly root docker exec immich-nginx certbot renew -q && docker restart immich-nginx > /dev/null 

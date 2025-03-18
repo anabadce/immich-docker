@@ -1,0 +1,7 @@
+.env
+letsencrypt_data
+library
+postgres
+nginx/conf.d/immich.conf
+*.crt
+*.key
